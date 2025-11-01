@@ -36,7 +36,7 @@ If there are three devices with standard deviations &sigma;₁, &sigma;₂, &sig
 
 The combined relationship can be approximated as:
 
-`σ₃ ≈ σ₁ · σ₂ / √2`
+`σ₃ ≈ √2 σ₁ · σ₂ `
 
 Hence, correlation between bit-cell mismatches causes structured variations in DNL &sigma; across codes rather than purely random noise.
 
