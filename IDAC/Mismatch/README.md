@@ -13,6 +13,11 @@ The DAC output currents are then generated using scaled versions of these unit c
        src="https://github.com/user-attachments/assets/23e48d1f-814b-4e3f-af5b-e91bbfb83065" />
 </p>
 
+<p align="center">
+  <b>Fig. 1.</b> (A) Variation of &sigma;(DNL) across digital codes for a 10-bit DAC.  
+  (B) Variation of &sigma;(INL) across digital codes for the same 10-bit DAC.
+</p>
+
 ---
 
 ## Differential Non-Linearity (DNL)
