@@ -5,7 +5,7 @@ The DAC is modeled using a binary-weighted current array composed of unit curren
 
 Iₓ = I₀ + I₀′
 
-where **I₀′**sm represents a **random Gaussian error** term with zero mean and standard deviation **σ**.  
+where `I₀` represents a **random Gaussian error** term with zero mean and standard deviation **σ**.  
 The DAC output currents are then generated using scaled versions of these unit cells — Iₓ, 2Iₓ, 4Iₓ, 8Iₓ .....
 
 <p align="center">
