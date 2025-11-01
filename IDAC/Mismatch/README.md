@@ -9,7 +9,7 @@ where `I₀'` represents a **random Gaussian error** term with zero mean and sta
 The DAC output currents are then generated using scaled versions of these unit cells — `Iₓ`, `2Iₓ`, `4Iₓ`, `8Iₓ` .....
 
 <p align="center">
-  <img width="80%" alt="IDAC_Mismatch_DNL_INL"
+  <img width="100%" alt="IDAC_Mismatch_DNL_INL"
        src="https://github.com/user-attachments/assets/23e48d1f-814b-4e3f-af5b-e91bbfb83065" />
 </p>
 
