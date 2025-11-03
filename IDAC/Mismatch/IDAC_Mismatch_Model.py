@@ -82,57 +82,61 @@ def plot_results(results, sigma_unit, num_runs):
     codes = results['codes']
     ideal = results['ideal']
 
-    # --- Ideal vs Example DAC ---
-    plt.figure(figsize=(8,4))
-    plt.step(codes, ideal, where='post', color='k', linewidth=2, label='Ideal')
-    plt.step(codes, Iout_all[0,:], where='post', linestyle='--', label='Example run 0')
-    plt.title('Ideal vs Example Mismatched DAC')
-    plt.xlabel('Code')
-    plt.ylabel('Iout / I0')
-    plt.grid(True)
-    plt.legend()
-    plt.tight_layout()
+    # -------------------------------
+    # Figure (A): Ideal vs Example DAC
+    # -------------------------------
+    figA, axA = plt.subplots(figsize=(8, 4))
+    axA.step(codes, ideal, where='post', color='k', linewidth=2, label='Ideal')
+    axA.step(codes, Iout_all[0, :], where='post', linestyle='--', label='Example run 0')
+    axA.set_xlabel('Code')
+    axA.set_ylabel('Iout / I0')
+    axA.grid(True)
+    axA.legend()
+    plt.tight_layout(rect=[0, 0.05, 1, 1])  # leave space for label below
+    figA.text(0.5, 0.01, '(A)', ha='center', va='center', fontsize=12)
     plt.show()
 
-    # --- Compute mean & sigma per code across all runs ---
+    # -------------------------------
+    # Compute mean & sigma per code
+    # -------------------------------
     DNL_sigma_vs_code = np.std(DNL_all, axis=0)
     INL_sigma_vs_code = np.std(INL_all, axis=0)
     DNL_mean_vs_code = np.mean(DNL_all, axis=0)
     INL_mean_vs_code = np.mean(INL_all, axis=0)
 
-    # --- Plot σ(DNL) & σ(INL) vs code (with per-run traces + mean lines) ---
-    plt.figure(figsize=(12,5))
+    # -------------------------------
+    # Figure (B): σ(DNL) & σ(INL) vs Code
+    # -------------------------------
+    figB, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 
-    # ---- σ(DNL) vs Code ----
-    ax1 = plt.subplot(1,2,1)
-    # for run in range(num_runs):
-        # ax1.plot(codes[1:], np.abs(DNL_all[run,:]), color='lightgray', alpha=0.4)
+    # (B1) DNL plot
     ax1.plot(codes[1:], DNL_sigma_vs_code, color='tab:orange', marker='o', linewidth=2, label='σ(DNL)')
     ax1.plot(codes[1:], DNL_mean_vs_code, color='tab:red', linestyle='--', linewidth=2, label='Mean(DNL)')
     ax1.set_xlabel('Code')
     ax1.set_ylabel('[LSB]')
-    ax1.set_title(f'σ(DNL) and Mean(DNL) vs Code ({num_runs} runs)')
     ax1.legend()
     ax1.grid(alpha=0.4)
 
-    # ---- σ(INL) vs Code ----
-    ax2 = plt.subplot(1,2,2)
-    # for run in range(num_runs):
-        # ax2.plot(codes, np.abs(INL_all[run,:]), color='lightgray', alpha=0.4)
+    # (B2) INL plot
     ax2.plot(codes, INL_sigma_vs_code, color='tab:green', marker='^', linewidth=2, label='σ(INL)')
     ax2.plot(codes, INL_mean_vs_code, color='tab:blue', linestyle='--', linewidth=2, label='Mean(INL)')
     ax2.set_xlabel('Code')
     ax2.set_ylabel('[LSB]')
-    ax2.set_title(f'σ(INL) and Mean(INL) vs Code ({num_runs} runs)')
     ax2.legend()
     ax2.grid(alpha=0.4)
 
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.05, 1, 1])  # add space below
+    figB.text(0.25, 0.01, '(B1)', ha='center', va='center', fontsize=12)
+    figB.text(0.75, 0.01, '(B2)', ha='center', va='center', fontsize=12)
     plt.show()
 
+    # -------------------------------
+    # Print summary stats
+    # -------------------------------
     print("Summary stats:")
     print(f"  Mean σ(DNL) over codes = {np.mean(DNL_sigma_vs_code):.5e} LSB")
     print(f"  Mean σ(INL) over codes = {np.mean(INL_sigma_vs_code):.5e} LSB")
+
 
 # ---------------------------
 # Example usage
